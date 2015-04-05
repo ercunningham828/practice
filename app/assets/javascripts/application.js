@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap.min.js
+//= require bootstrap-sprockets
 //= require demo
 //= require gmap3.js
 //= require jquery.colorbox.js
