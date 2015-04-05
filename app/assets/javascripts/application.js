@@ -14,15 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require bootstrap.min
-//= require bootstrap-sprockets
-//= require demo
-//= require gmap3
-//= require jquery.colorbox
-//= require jquery.easing
-//= require jquery.min
-//= require less.min
-//= require prefixfree.min
-//= require respond.min
-//= require script
 //= require_tree .
