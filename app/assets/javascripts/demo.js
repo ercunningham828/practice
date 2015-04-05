@@ -1,10 +1,10 @@
 $(document).ready(function(){
-	$('.demo-btn').on('click', function(){
-	    $('.demo-container').slideToggle();
-	});
+	$('.panel-toggle').on('click', function(){
+		$('#demo-panel').toggleClass('panel-hide');
+	})
 
-	$('.color-option').on('click', function(){
-		var color = $(this).attr('data-color-value');
-		$('#color-style').attr('href', 'css/skin-'+color+'.min.css');
-	});
+	$('#demo-panel ul > li').on('click', function(){
+		var color = $(this).attr('data-color');
+		$('#skin').attr('href', 'css/skin-'+color+'.min.css');
+	})
 })

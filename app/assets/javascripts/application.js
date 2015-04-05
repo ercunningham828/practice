@@ -13,4 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
+//= require bootstrap.min.js
+//= require demo
+//= require gmap3.js
+//= require jquery.colorbox.js
+//= require jquery.easing.js
+//= require jquery.min.js
+//= require less.min
+//= require prefixfree.min
+//= require respond.min.js
+//= require script.js
 //= require_tree .

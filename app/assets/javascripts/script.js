@@ -1,77 +1,76 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-  /* parallax background */
-  $('#header').parallax();
-  $('#about').parallax();
+	/**
+	* Scroll animation if click navbar menu
+	**/
+	$('a.navbar-brand, ul.navbar-nav > li > a').bind('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1500, 'easeInOutExpo');
+        event.preventDefault();
+    });
 
-  /* nice scroll */
-  $( 'html' ).niceScroll({
-    cursorcolor: '#434a54', //change with your own color
-    cursorwidth: '10px',
-    cursorborder: '1px solid #434a54', //change with your own color
-    cursoropacitymax: 0.9,                
-    scrollspeed: 120,
-    autohidemode: false,
-    horizrailenabled: false,
-    cursorborderradius: 2,
-    zindex: 1060
-  });
-
-  /* scrolltop */
-  $('.navbar-nav li a, .menus').on('click', function(event) {
-    var $anchor = $(this);
-    $('html, body').stop().animate({
-        scrollTop: $($anchor.attr('href')).offset().top
-    }, 1500, 'easeInOutExpo');
-    event.preventDefault();
-  });
-
-  if( $(window).scrollTop() > 200 ){
-    $('.navbar-fixed-top').addClass('navbar-scroll')
-  }else{
-    $('.navbar-fixed-top').removeClass('navbar-scroll')
-  }
-
-  /* scrollspy highlighting active navbar menu */
-	$('body').scrollspy({
-	    target: '.navbar-fixed-top'
-	})
-
-  /* close navbar collapse after click in mobile */
-	$('.navbar-collapse ul li a').click(function() {
-	    $('.navbar-toggle:visible').click();
-	});
-
-	/* map contact */
-  $("#map").gmap3({
-    map: {
-        options: {
-          center: [-7.866315,110.389574], /* change langitude latitude of your location here */
-          zoom: 12,
-          scrollwheel: false
-        }  
-     },
-    marker:{
-        latLng: [-7.866315,110.389574], /* change langitude latitude of your location here */
-        options: {
-         icon: new google.maps.MarkerImage(
-           "https://dl.dropboxusercontent.com/u/29545616/Preview/location.png",
-           new google.maps.Size(48, 48, "px", "px")
-         )
-        }
-     }
-  });
-
-  /* skill easy pie chart */
-  $('.chart').easyPieChart({
-    animate: 2000,
-    barColor: '#ef4034', // change with your own color 
-    trackColor: '#f7f7f7',
-    size: 130,
-    lineWidth: 4,
-    easing: 'easeInOutCirc',
-    onStep: function(from, to, percent) {
-      $(this.el).find('.percent').text(Math.round(percent));
+	/**
+	* Navbar collapse close if clicking menu on mobile
+	**/
+    if($(window).width() < 767){
+    	$('ul.navbar-nav > li > a').on('click', function(){
+    		$('.navbar-collapse').removeClass('in');
+    		$('.navbar-collapse').attr('style', 'height: 1');
+    	});
     }
-  });
+
+	/**
+	* Call tooltip & carousel bootstrap js
+	**/
+    $('[rel="tooltip"]').tooltip();
+    $('#wedding-photo').carousel();
+
+	/**
+	* Call colorbox on wedding photo gallery
+	**/
+    if($(window).width() > 767){
+		$(".gallery-images").colorbox({rel:'gallery-images', width:'auto', height: '85%'});
+	}else{
+		$(".gallery-images").colorbox({rel:'gallery-images', width:'85%', height: 'auto'});
+	}
+
+	/**
+	* Display map in contact section using gmap 3
+	**/
+	$("#maps").gmap3({
+		 map:{
+		    options:{
+		      center:[-7.867555,110.388502],
+		      zoom: 16,
+			  scrollwheel: false
+		    }
+ 		 },
+ 		 marker:{
+ 		 	values : [
+ 		 		{latLng:[-7.867555,110.388502],data:'<img src="https://dl.dropboxusercontent.com/u/29545616/Preview/ditinggalrabi.png">',  options:{icon: 'https://dl.dropboxusercontent.com/u/29545616/Preview/location.png'}}
+ 		 	],
+ 		 	events : {
+ 		 	 click: function(marker, event, context){
+		        var map = $(this).gmap3("get"),
+		          infowindow = $(this).gmap3({get:{name:"infowindow"}});
+		        if (infowindow){
+		          infowindow.open(map, marker);
+		          infowindow.setContent(context.data);
+		        } else {
+		          $(this).gmap3({
+		            infowindow:{
+		              anchor:marker, 
+		              options:{content: context.data}
+		            }
+		          });
+		        }
+		      }
+ 		 }
+ 		 }
+
+	});
+	
 });
+

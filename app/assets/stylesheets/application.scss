@@ -1,6 +1,16 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
- @import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "responsive";
+@import "skin";
+@import "style";
+@import "colorbox";
+@import "bootstrap-theme";
+@import "skin-yellow";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
